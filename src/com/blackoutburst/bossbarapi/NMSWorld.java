@@ -4,6 +4,17 @@ import java.lang.reflect.Constructor;
 
 public class NMSWorld {
 
+    private Object getMethodProfiler(Class<?> methodProfilerClass) {
+        try {
+            final Constructor<?> methodProfilerConstructor = methodProfilerClass.getConstructor();
+
+            return methodProfilerConstructor.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private Object getWorldProvider(Class<?> worldProviderClass) {
         try {
             final Constructor<?> worldProviderConstructor = worldProviderClass.getConstructor();
@@ -38,6 +49,7 @@ public class NMSWorld {
 
             final Object worldData = getWorldData(worldDataClass);
             final Object worldProvider = getWorldProvider(worldProviderClass);
+            final Object methodProfiler = getMethodProfiler(methodProfilerClass);
 
         } catch (Exception e) {
             e.printStackTrace();
