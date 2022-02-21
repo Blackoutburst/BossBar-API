@@ -17,7 +17,7 @@ public class NMSEntities {
 
             final Constructor<?> dragonConstructor = dragonClass.getConstructor(worldClass);
 
-            entity = dragonConstructor.newInstance();
+            entity = dragonConstructor.newInstance(NMSWorld.getWorld());
         } catch (Exception e) {
             e.printStackTrace();
         }
