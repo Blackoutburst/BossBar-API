@@ -27,7 +27,7 @@ public class Main extends JavaPlugin implements Listener {
         final BossBarApiPlayer ap = BossBarApiPlayer.get(p);
 
         final double x = p.getLocation().getX() + p.getLocation().getDirection().getX() * 50;
-        final double y = p.getLocation().getY();
+        final double y = p.getLocation().getY() + p.getLocation().getDirection().getY() * 50;
         final double z = p.getLocation().getZ() + p.getLocation().getDirection().getZ() * 50;
 
         NMSEntityTeleport.send(ap.getPlayer(), ap.bossbar, x, y, z);

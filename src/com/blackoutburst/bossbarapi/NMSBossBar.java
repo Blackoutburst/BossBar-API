@@ -20,7 +20,7 @@ public class NMSBossBar {
         try {
 
             final double x = player.getLocation().getX() + player.getLocation().getDirection().getX() * 50;
-            final double y = player.getLocation().getY();
+            final double y = player.getLocation().getY() + player.getLocation().getDirection().getY() * 50;
             final double z = player.getLocation().getZ() + player.getLocation().getDirection().getZ() * 50;
 
             final NMSEntities entity = new NMSEntities(player, NMSEntities.EntityType.WITHER);
