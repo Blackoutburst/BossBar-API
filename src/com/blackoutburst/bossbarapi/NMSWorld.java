@@ -61,14 +61,14 @@ public class NMSWorld {
             final Class<?> methodProfilerClass = NMS.getClass("MethodProfiler");
             final Class<?> worldClass = NMS.getClass("World");
 
-            final Constructor<?> worldConstructor = worldClass.getConstructor(iDataManagerClass, worldDataClass, worldProviderClass, methodProfilerClass);
+            final Constructor<?> worldConstructor = worldClass.getConstructor(iDataManagerClass, worldDataClass, worldProviderClass, methodProfilerClass, boolean.class);
 
             final Object iDataManager = getDataManager(iDataManagerClass);
             final Object worldData = getWorldData(worldDataClass);
             final Object worldProvider = getWorldProvider(worldProviderClass);
             final Object methodProfiler = getMethodProfiler(methodProfilerClass);
 
-            return worldConstructor.newInstance(iDataManager, worldData, worldProvider, methodProfiler);
+            return worldConstructor.newInstance(iDataManager, worldData, worldProvider, methodProfiler, true);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -10,7 +10,7 @@ public class NMSEntities {
         this.entity = null;
     }
 
-    public void getDragon() {
+    public NMSEntities getDragon() {
         try {
             final Class<?> dragonClass = NMS.getClass("EntityEnderDragon");
             final Class<?> worldClass = NMS.getClass("World");
@@ -21,6 +21,7 @@ public class NMSEntities {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return this;
     }
 
 }
