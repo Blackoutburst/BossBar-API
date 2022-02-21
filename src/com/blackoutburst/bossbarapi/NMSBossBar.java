@@ -15,6 +15,11 @@ public class NMSBossBar {
 
     public NMSBossBar(Player player, String text, int lifePercentage) {
         try {
+
+            final double x = player.getLocation().getX() + player.getLocation().getDirection().getX() * 50;
+            final double y = player.getLocation().getY();
+            final double z = player.getLocation().getZ() + player.getLocation().getDirection().getZ() * 50;
+
             final NMSEntities entity = new NMSEntities(player, NMSEntities.EntityType.WITHER);
 
             final Method getId = entity.entity.getClass().getMethod("getId");
@@ -22,14 +27,16 @@ public class NMSBossBar {
             final Method getMaxHealth = entity.entity.getClass().getMethod("getMaxHealth");
             final Method setCustomName = entity.entity.getClass().getMethod("setCustomName", String.class);
             final Method setCustomNameVisible = entity.entity.getClass().getMethod("setCustomNameVisible", boolean.class);
+            final Method setPosition = entity.entity.getClass().getMethod("setPosition", double.class, double.class, double.class);
             final Method setInvisible = entity.entity.getClass().getMethod("setInvisible", boolean.class);
 
             final float maxHealth = (float) getMaxHealth.invoke(entity.entity);
 
             setCustomName.invoke(entity.entity, text);
             setCustomNameVisible.invoke(entity.entity, false);
+            setPosition.invoke(entity.entity, x, y, z);
             setInvisible.invoke(entity.entity, true);
-            setHealth.invoke(entity.entity, map(lifePercentage * 2, 0, maxHealth, 0, maxHealth));
+            setHealth.invoke(entity.entity, map(lifePercentage, 0, 100, 0, maxHealth));
 
             NMSSpawnEntityLiving.send(player, entity);
             this.text = text;
