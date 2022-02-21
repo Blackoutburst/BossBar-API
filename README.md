@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/github/license/Blackoutburst/QuakeCraft.svg)](LICENSE)
+
 # BossBar-API
 A simple bossbar API using reflection
 
