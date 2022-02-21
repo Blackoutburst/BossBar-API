@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/github/license/Blackoutburst/QuakeCraft.svg)](LICENSE)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/080241be08834e358369f7d2258a22b5)](https://www.codacy.com/gh/Blackoutburst/BossBar-API/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Blackoutburst/BossBar-API&amp;utm_campaign=Badge_Grade)
 
 # BossBar-API
 A simple bossbar API using reflection
