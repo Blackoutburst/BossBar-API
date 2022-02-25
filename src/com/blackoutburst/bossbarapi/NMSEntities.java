@@ -8,7 +8,6 @@ import java.lang.reflect.Method;
 public class NMSEntities {
 
     protected Object entity;
-    protected int ID;
 
     public enum EntityType {
         WITHER("EntityWither");
@@ -20,8 +19,24 @@ public class NMSEntities {
         }
     }
 
+    public Object getDataWatcher() {
+        try {
+            final Method getId = entity.getClass().getMethod("getDataWatcher");
+            return getId.invoke(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public int getID() {
-        return ID;
+        try {
+            final Method getId = entity.getClass().getMethod("getId");
+            return (int) getId.invoke(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     public NMSEntities(Player player, EntityType type) {
@@ -32,9 +47,6 @@ public class NMSEntities {
             final Constructor<?> dragonConstructor = entityClass.getConstructor(worldClass);
 
             entity = dragonConstructor.newInstance(NMSWorld.getWorld(player));
-
-            final Method getId = entity.getClass().getMethod("getId");
-            ID = (int) getId.invoke(entity);
         } catch (Exception e) {
             e.printStackTrace();
         }

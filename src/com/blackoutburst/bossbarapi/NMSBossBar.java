@@ -12,13 +12,24 @@ public class NMSBossBar {
         return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
     }
 
+    public void editText(BossBarApiPlayer player, String text) {
+        try {
+            final Method setCustomName = player.getBossbar().entity.getClass().getMethod("setCustomName", String.class);
+
+            setCustomName.invoke(player.getBossbar().entity, text);
+
+            NMSEntityMetadata.send(player.getPlayer(), player.getBossbar());
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void delete(Player player) {
-        NMSEntityDestroy.send(player, BossBarApiPlayer.get(player).bossbar.ID);
+        NMSEntityDestroy.send(player, BossBarApiPlayer.get(player).bossbar.getID());
     }
 
     public NMSBossBar(Player player, String text, int lifePercentage) {
         try {
-
             final double x = player.getLocation().getX() + player.getLocation().getDirection().getX() * 50;
             final double y = player.getLocation().getY() + player.getLocation().getDirection().getY() * 50;
             final double z = player.getLocation().getZ() + player.getLocation().getDirection().getZ() * 50;
