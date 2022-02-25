@@ -1,6 +1,5 @@
 package com.blackoutburst.bossbarapi;
 
-import com.blackoutburst.bossbarapi.NMS;
 import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;
 

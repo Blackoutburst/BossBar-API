@@ -12,6 +12,12 @@ public class NMSBossBar {
         return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
     }
 
+    /**
+     * Set the bossbar health
+     *
+     * @param player the player affiliated with this bossbar
+     * @param lifePercentage the new life of the bossbar
+     */
     public void setHealth(Player player, int lifePercentage) {
         try {
             final BossBarApiPlayer bp = BossBarApiPlayer.get(player);
@@ -29,6 +35,12 @@ public class NMSBossBar {
         }
     }
 
+    /**
+     * Set the bossbar text
+     *
+     * @param player the player affiliated with this bossbar
+     * @param text the new text
+     */
     public void setText(Player player, String text) {
         try {
             final BossBarApiPlayer bp = BossBarApiPlayer.get(player);
@@ -43,10 +55,22 @@ public class NMSBossBar {
         }
     }
 
+    /**
+     * Delete the bossbar
+     *
+     * @param player the player affiliated with this bossbar
+     */
     public void delete(Player player) {
         NMSEntityDestroy.send(player, BossBarApiPlayer.get(player).bossbar.getID());
     }
 
+    /**
+     * Create a new bossbar using default parameters
+     *
+     * @param player the player that will see the bossbar
+     * @param text the bossbar text
+     * @param lifePercentage the bossbar health
+     */
     public NMSBossBar(Player player, String text, int lifePercentage) {
         try {
             final double x = player.getLocation().getX() + player.getLocation().getDirection().getX() * 50;

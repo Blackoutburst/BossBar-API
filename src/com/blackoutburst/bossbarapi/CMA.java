@@ -1,12 +1,13 @@
 package com.blackoutburst.bossbarapi;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
-import java.lang.reflect.Field;
-
 public class CMA {
 
+    /**
+     * Get a mojang authlib class
+     *
+     * @param name the class name
+     * @return the class
+     */
     public static Class<?> getClass(String name) {
         try {
             return Class.forName("com.mojang.authlib." + name);
