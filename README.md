@@ -15,6 +15,11 @@ Create a bossbar
 ```java
 NMSBossBar bossBar = new NMSBossBar(player, "§aHello §6World!", 75);
 ```
-
-Preview\
 ![image](https://user-images.githubusercontent.com/30992311/155023030-e2ee8408-2421-4b30-8bce-c8e57913d84a.png)
+
+Edit a bossbar with
+```java
+bossBar.setHealth(player, 100);
+bossBar.setText(player, "§cTest");
+```
+![image](https://user-images.githubusercontent.com/30992311/155735498-799714bb-aab7-45c4-ac97-65545a9a8086.png)
