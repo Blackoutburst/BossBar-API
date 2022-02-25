@@ -12,7 +12,7 @@ public class NMSBossBar {
         return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
     }
 
-    public void editHealth(BossBarApiPlayer player, int lifePercentage) {
+    public void setHealth(BossBarApiPlayer player, int lifePercentage) {
         try {
             final Method setHealth = player.getBossbar().entity.getClass().getMethod("setHealth", float.class);
             final Method getMaxHealth = player.getBossbar().entity.getClass().getMethod("getMaxHealth");
@@ -27,7 +27,7 @@ public class NMSBossBar {
         }
     }
 
-    public void editText(BossBarApiPlayer player, String text) {
+    public void setText(BossBarApiPlayer player, String text) {
         try {
             final Method setCustomName = player.getBossbar().entity.getClass().getMethod("setCustomName", String.class);
 
@@ -49,7 +49,7 @@ public class NMSBossBar {
             final double y = player.getLocation().getY() + player.getLocation().getDirection().getY() * 50;
             final double z = player.getLocation().getZ() + player.getLocation().getDirection().getZ() * 50;
 
-            final NMSEntities entity = new NMSEntities(player, NMSEntities.EntityType.WITHER);
+            final NMSEntities entity = new NMSEntities(player.getWorld(), NMSEntities.EntityType.WITHER);
 
             final Method setHealth = entity.entity.getClass().getMethod("setHealth", float.class);
             final Method getMaxHealth = entity.entity.getClass().getMethod("getMaxHealth");
