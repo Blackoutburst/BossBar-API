@@ -12,6 +12,21 @@ public class NMSBossBar {
         return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
     }
 
+    public void editHealth(BossBarApiPlayer player, int lifePercentage) {
+        try {
+            final Method setHealth = player.getBossbar().entity.getClass().getMethod("setHealth", float.class);
+            final Method getMaxHealth = player.getBossbar().entity.getClass().getMethod("getMaxHealth");
+
+            final float maxHealth = (float) getMaxHealth.invoke(player.getBossbar().entity);
+
+            setHealth.invoke(player.getBossbar().entity, map(lifePercentage, 0, 100, 0, maxHealth));
+
+            NMSEntityMetadata.send(player.getPlayer(), player.getBossbar());
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void editText(BossBarApiPlayer player, String text) {
         try {
             final Method setCustomName = player.getBossbar().entity.getClass().getMethod("setCustomName", String.class);
